@@ -1,0 +1,16 @@
+target
+/project/target
+/project/project/target
+*.class
+*.iml
+*.ipr
+*.iws
+.idea
+out
+tags
+.*.swp
+.*.swo
+*.zip
+*.md
+*.html
+spark-warehouse

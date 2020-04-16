@@ -1,0 +1,24 @@
+version: "3.6"
+volumes:
+  cno-logs-uhdocdn:
+networks:
+  netCNO:
+    external:
+      name: -netcno
+services:
+  CNO-UHDoCDN:
+    build:
+      context: .
+      dockerfile: deployment/docker/Dockerfile
+    image: 5gmedia-uhdocdn-classifier
+    restart: always
+    container_name: CNO-UHDoCDN
+    ports:
+      - "${UHDOCDN_SPARK_PORT}:4040"
+    environment:
+      - CNO_KAFKA_HOST=${UHDOCDN_KAFKA_HOST}
+      - CNO_OUTPUT_OPERATION=${UHDOCDN_OUTPUT_OP}
+    networks:
+      - netCNO
+    volumes:
+      - cno-logs-uhdocdn:/opt/spark-apps/predictor/logs/
